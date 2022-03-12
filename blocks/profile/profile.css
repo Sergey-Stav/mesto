@@ -1,0 +1,5 @@
+.profile {
+  display: grid;
+  grid-template-areas: "img title button_edit button_add"
+                       "img subtitle . button_add";
+}
