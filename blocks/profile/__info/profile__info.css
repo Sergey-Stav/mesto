@@ -3,3 +3,11 @@
   grid-template-areas: "img title button_edit"
                        "img subtitle .";
 }
+
+@media screen and (max-width: 767px) {
+  .profile__info {
+    grid-template-areas: "img img"
+                          "title button_edit"
+                          "subtitle subtitle";
+  }
+}

@@ -7,3 +7,15 @@
   box-sizing: border-box;
   cursor: pointer;
 }
+
+@media (min-width: 540px) and (max-width: 767px) {
+  .profile__button-add-elements {
+    width: 335px;
+  }
+}
+
+@media screen and (max-width: 539px) {
+  .profile__button-add-elements {
+    width: 100%;
+  }
+}

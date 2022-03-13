@@ -2,5 +2,11 @@
   border: none;
   background: transparent;
   cursor: pointer;
+  transition: opacity 700ms linear;
 }
+
+.card__like:hover {
+  opacity: 0.5;
+}
+
 

@@ -1,0 +1,7 @@
+@media screen and (max-width: 539px) {
+  .profile__img-button-edit {
+    width: 7.5px;
+    height: 7.5px;
+    margin-bottom: 3px;
+  }
+}

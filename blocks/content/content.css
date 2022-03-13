@@ -3,8 +3,15 @@
   margin: 0 auto;
 }
 
-/* @media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 540px) and (max-width: 1023px) {
   .content {
-   margin: 0 auto;
+    padding-left: 5%;
+    padding-right: 5%;
   }
-} */
+}
+
+@media screen and (max-width: 539px) {
+  .content {
+    width: calc(100% - 2 * 19px);
+  }
+}
