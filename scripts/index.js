@@ -1,27 +1,63 @@
-// Находим форму в DOM
+//Задаём переменные
+let popupElement = document.querySelector('.popup');
+let editButton = document.querySelector('.profile__button-edit');
+let closeButton = popupElement.querySelector('.popup__close');
+let profileName = document.querySelector('.profile__title');
+let profileJob = document.querySelector('.profile__subtitle');
+let saveButton = popupElement.querySelector('.popup__button-save')
 let formElement = document.querySelector('.popup__content');
-// Находим поля формы в DOM
 let nameInput = document.querySelector('.popup__name');
 let jobInput = document.querySelector('.popup__job');
-console.log(nameInput.value);
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
+
+//Добавляем обработчик события при нажатии клавиши ESC
+const ESC_KEY = "Escape";
+function onDocumentKeyDown (event) {
+  if (event.key === "Escape") {
+    closePopup();
+  }
+}
+
+//Добавляем обработчик для закрытия по оверлею
+function closeByOverlay(evt) {
+  if (evt.target.classList.contains('popup__container')) {
+    closePopup();
+  }
+}
+
+//Функция открыть popup
+function openPopup() {
+  popupElement.classList.add('popup_opened');
+  popupElement.addEventListener('click', closeByOverlay);
+  document.addEventListener('keydown', onDocumentKeyDown);
+  nameInput.value = profileName.innerText;
+  jobInput.value = profileJob.innerText;
+}
+
+//Функция закрыть popup
+function closePopup() {
+  popupElement.classList.remove('popup_opened');
+  popupElement.removeEventListener('click', closeByOverlay);
+  document.removeEventListener('keydown', onDocumentKeyDown);
+}
+
+//Назначаем события при нажатии кнопок edit close и save
+editButton.addEventListener('click', openPopup);
+closeButton.addEventListener('click', closePopup);
+saveButton.addEventListener('click', closePopup);
+
+
+// Обработчик «отправки» формы
 function formSubmitHandler (evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-                                                // Так мы можем определить свою логику отправки.
-                                                // О том, как это делать, расскажем позже.
-
-    // Получите значение полей jobInput и nameInput из свойства value
-
-    // Выберите элементы, куда должны быть вставлены значения полей
-  let nameInputForm = document.querySelector('.profile__title');
-  let jobInputForm = document.querySelector('.profile__subtitle');
-  nameInputForm.textContent = nameInput.value;
-  jobInputForm.textContent = jobInput.value;  // Вставьте новые значения с помощью textContent
+    evt.preventDefault();
+// Получаем значение полей jobInput и nameInput из свойства value
+  let nameInputForm = nameInput.value;
+  let jobInputForm = jobInput.value;
+// Вставляем новые значения с помощью textContent
+  profileName.textContent = nameInputForm;
+  profileJob.textContent = jobInputForm;
 }
 
 // Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler);
 
 

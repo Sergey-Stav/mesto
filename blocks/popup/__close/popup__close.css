@@ -10,6 +10,24 @@
   height: 40px;
 }
 
+.popup__close::before {
+  position: absolute;
+  content: "";
+  height: 35px;
+  border: 1px solid #fff;
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.popup__close::after {
+  position: absolute;
+  content: "";
+  height: 35px;
+  border: 1px solid #fff;
+  top: 0;
+  transform: rotate(-45deg);
+}
+
 @media screen and (max-width: 539px) {
   .popup__close {
     top: -36px;
