@@ -1,17 +1,49 @@
-# Проект: Место
+# Проект 4: Mesto
 
-### Обзор
+### Описание:
+Учебный проект выполненный в рамках проектной работы по изучению базового уровня JavaScript.
 
-* Figma
-* Картинки
+Интерактивная страница для добавления и удаления фотографий.
 
-**Figma**
+Внешний вид сайта соответствует макету:
+https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+Разработан в рамках изучения темы "Базовый JavaScript и работа с браузером" при
+прохождении курса Web-разработчик от Яндекс.Практикум
 
-**Картинки**
+При написании сайта использованы технологии:
+- HTML
+- CSS (Флексбокс-вёрстка, вёрстка на Грид, адаптивная верстка, позиционирование элементов, трансформации)
+- Методология БЭМ (Nested)
+- JavaScript
+### Ссылка на проект
+https://sergey-stav.github.io/russian-travel/
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
+#### __Сергей Литвиненко__
+#### **_16/03/2022_**
 
-Удачи!
+# Project 3: Mesto
+
+### Description:
+Learning project carried out as a part of the project work of basic level of JavaScript.
+
+Interactive page for adding and removing photos.
+
+The appearance of the site corresponds to the layout:
+https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1
+
+The project was developed as a part of the study of the topic "Basic JavaScript and browser work" passing the course web-developer from Yandex Practicum
+
+In creating of this website, the following technologies were used:
+-	HTML
+-	CSS (flexbox, grid, elements’ adaptive layout, positioning, transformation)
+-	BEM methodology (Nested)
+- JavaScript
+
+### Project link
+https://sergey-stav.github.io/russian-travel/
+
+#### __Sergey Litvinenko__
+#### **_16/03/2022_**
+
+<img src="./images/Prakticum.png" width="183px">
