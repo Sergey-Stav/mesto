@@ -17,7 +17,7 @@ https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0
 - Методология БЭМ (Nested)
 - JavaScript
 ### Ссылка на проект
-https://sergey-stav.github.io/russian-travel/
+https://sergey-stav.github.io/mesto/
 
 #### __Сергей Литвиненко__
 #### **_16/03/2022_**
@@ -41,7 +41,7 @@ In creating of this website, the following technologies were used:
 - JavaScript
 
 ### Project link
-https://sergey-stav.github.io/russian-travel/
+https://sergey-stav.github.io/mesto/
 
 #### __Sergey Litvinenko__
 #### **_16/03/2022_**
