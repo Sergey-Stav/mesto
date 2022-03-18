@@ -1,15 +1,15 @@
 //Задаём переменные
-let popupElement = document.querySelector('.popup');
-let editButton = document.querySelector('.profile__button-edit');
-let closeButton = popupElement.querySelector('.popup__close');
-let profileName = document.querySelector('.profile__title');
-let profileJob = document.querySelector('.profile__subtitle');
-let formElement = document.querySelector('.popup__content');
-let nameInput = document.querySelector('.popup__name');
-let jobInput = document.querySelector('.popup__job');
+const popupElement = document.querySelector('.popup');
+const editButton = document.querySelector('.profile__button-edit');
+const closeButton = popupElement.querySelector('.popup__close');
+const profileName = document.querySelector('.profile__title');
+const profileJob = document.querySelector('.profile__subtitle');
+const formElement = popupElement.querySelector('.popup__content');
+const nameInput = popupElement.querySelector('.popup__name');
+const jobInput = popupElement.querySelector('.popup__job');
 
 //Функция присвоения значений полей input из profile
-function inputsValueFromProfile() {
+function inputsValuesFromProfile() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 }
@@ -37,7 +37,7 @@ function closeByOverlay(event) {
 
 //Функция открыть popup
 function openPopup() {
-  inputsValueFromProfile();
+  inputsValuesFromProfile();
   popupElement.classList.add('popup_opened');
   popupElement.addEventListener('click', closeByOverlay);
   document.addEventListener('keydown', onDocumentKeyDown);

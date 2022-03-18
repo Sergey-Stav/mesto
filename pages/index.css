@@ -18,8 +18,6 @@
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 @import url(../blocks/profile/__button-edit/profile__button-edit.css);
 @import url(../blocks/profile/__button-add-elements/profile__button-add-elements.css);
-@import url(../blocks/profile/__img-button-edit/profile__img-button-edit.css);
-@import url(../blocks/profile/__img-add-elements/profile__img-add-elements.css);
 
 @import url(../blocks/cards/cards.css);
 @import url(../blocks/card/card.css);
