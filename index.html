@@ -31,7 +31,7 @@
       <!-- elements block -->
       <section class="elements page__elements">
         <ul class="cards">
-          <li class="card">
+          <!-- <li class="card">
             <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск" class="card__image">
             <div class="card__description">
               <h2 class="card__title">Карачаевск</h2>
@@ -72,7 +72,7 @@
               <h2 class="card__title">Карачаево-Черкессия</h2>
               <button class="card__like"></button>
             </div>
-          </li>
+          </li> -->
         </ul>
       </section>
     </main>
@@ -80,9 +80,9 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup-edit">
       <div class="popup__container">
-        <form class="popup__content" name="edit-profile" novalidate>
+        <form class="popup__content popup__form-edit" name="edit-profile" novalidate>
           <button class="popup__close" type="button" aria-label="закрыть"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
           <fieldset class="popup__field">
@@ -93,6 +93,34 @@
         </form>
       </div>
     </div>
+    <div class="popup popup-add">
+      <div class="popup__container">
+        <form class="popup__content popup__form-add" name="add-card" novalidate>
+          <button class="popup__close" type="button" aria-label="закрыть"></button>
+          <h2 class="popup__title">Новое место</h2>
+          <fieldset class="popup__field">
+            <input type="text" class="popup__input popup__image-title" placeholder="Название">
+            <input type="text" class="popup__input popup__image-link" placeholder="Ссылка на картинку">
+          </fieldset>
+          <button class="popup__button-save" type="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup-img">
+      <button class="popup-img__close" type="button" aria-label="закрыть"></button>
+      <img src="#" alt="" class="popup-img__image">
+      <h2 class="popup-img__title"></h2>
+    </div>
+    <template class="cards-template">
+      <li class="card">
+        <img src="#" alt="" class="card__image">
+        <div class="card__description">
+          <h2 class="card__title"></h2>
+          <button class="card__like"></button>
+        </div>
+        <button class="card__trash"></button>
+      </li>
+    </template>
   </div>
   <script src="./scripts/index.js"></script>
 </body>
