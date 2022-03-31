@@ -28,10 +28,12 @@ const initialCards = [
 //Задаём переменные
 const popupEdit = document.querySelector('.popup-edit');
 const popupAdd = document.querySelector('.popup-add');
+const popupPhoto = document.querySelector('.popup__photo');
 const openPopupEdit = document.querySelector('.profile__button-edit');
 const openPopupAdd = document.querySelector('.profile__button-add-elements');
 const closePopupEdit = popupEdit.querySelector('.popup__close');
 const closePopupAdd = popupAdd.querySelector('.popup__close');
+const closePopupPhoto = popupPhoto.querySelector('.popup__close');
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
 const formElementEdit = popupEdit.querySelector('.popup__form-edit');
@@ -40,8 +42,10 @@ const editName = popupEdit.querySelector('.popup__name');
 const editJob = popupEdit.querySelector('.popup__job');
 const addImageTitle = popupAdd.querySelector('.popup__image-title');
 const addImageLink = popupAdd.querySelector('.popup__image-link');
+const photoZoom = popupPhoto.querySelector('.popup__zoom-image');
+const photoCaption = popupPhoto.querySelector('.popup__zoom-caption')
 const cardList = document.querySelector('.cards');
-
+const cardItem = document.querySelector('.card');
 
 
 //Создание карточек и добавление событий
@@ -54,6 +58,9 @@ function createNewCard(place, link) {
   cardImage.alt = place;
   card.querySelector('.card__trash').addEventListener('click', removeCard);
   card.querySelector('.card__like').addEventListener('click', addLike);
+  cardImage.addEventListener('click', function () {
+  openPopupPhoto(place, link);
+  });
   return card;
 }
 
@@ -70,7 +77,17 @@ function addNewCard() {
   cardList.prepend(card);
 }
 
+//Функция открытия окна просмотра фотографии
+function openPopupPhoto(place, link) {
+  photoZoom.src = link;
+  photoCaption.textContent = place;
+  openPopup(popupPhoto);
+}
 
+//Функция закрытия окна просмотра фотографии
+closePopupPhoto.addEventListener('click', function () {
+  closePopup(popupPhoto);
+})
 
 //Функция присвоения значений полей input из profile
 function inputsValuesFromProfile() {
@@ -95,7 +112,8 @@ const closeByEsc = (evt) => {
 
 //Обработчик для закрытия при клике на оверлей
 const closeByOverlay = (evt) => {
-  if (evt.target.classList.contains('popup__container')) {
+  if (evt.target.classList.contains('popup__container') ||
+  (evt.target.classList.contains('popup__zoom-container'))) {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
