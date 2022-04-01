@@ -85,13 +85,13 @@ closePopupPhoto.addEventListener('click', function () {
   closePopup(popupPhoto);
 })
 
-//Функция присвоения значений полей input из profile
+//Присвоение значений полей input из profile
 function inputsValuesFromProfile() {
   editName.value = profileName.textContent;
   editJob.value = profileJob.textContent;
 }
 
-//Функция присвоения textContent profile из input
+//Присвоение textContent profile из input
 function profileValuesFromInput() {
   profileName.textContent = editName.value;
   profileJob.textContent = editJob.value;
