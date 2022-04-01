@@ -20,7 +20,7 @@ https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0
 https://sergey-stav.github.io/mesto/
 
 #### __Сергей Литвиненко__
-#### **_16/03/2022_**
+#### **_01/04/2022_**
 
 # Project 3: Mesto
 
@@ -44,6 +44,6 @@ In creating of this website, the following technologies were used:
 https://sergey-stav.github.io/mesto/
 
 #### __Sergey Litvinenko__
-#### **_16/03/2022_**
+#### **_01/04/2022_**
 
 <img src="./images/Prakticum.png" width="183px">
