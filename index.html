@@ -24,11 +24,11 @@
           <img src="./images/Avatar.jpg" alt="Аватар" class="profile__avatar">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <p class="profile__subtitle">Исследователь океана</p>
+          <!--Микс классов для задания прозрачности при hover-->
           <button class="profile__button-edit opacity" aria-label="Редактировать"></button>
-          <!--Микс классов для задания прозрачности при наведении-->
         </div>
+        <!--Микс классов для задания прозрачности при hover-->
         <button class="profile__button-add-elements opacity" aria-label="Добавить"></button>
-        <!--Микс классов для задания прозрачности при наведении-->
       </section>
       <!-- elements block -->
       <div class="elements page__elements">
@@ -41,10 +41,11 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
-    <div class="popup popup-edit">
+    <div class="popup popup_type_edit">
       <div class="popup__container">
         <form class="popup__content popup__form-edit" name="edit-profile" novalidate>
-          <button class="popup__close" type="button" aria-label="закрыть"></button>
+          <!--Микс классов для задания прозрачности при hover-->
+          <button class="popup__close opacity" type="button" aria-label="закрыть"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
           <fieldset class="popup__field">
             <input type="text" class="popup__input popup__name" placeholder="Имя">
@@ -54,29 +55,31 @@
         </form>
       </div>
     </div>
-    <div class="popup popup-add">
+    <div class="popup popup_type_add">
       <div class="popup__container">
         <form class="popup__content popup__form-add" name="add-card" novalidate>
-          <button class="popup__close" type="button" aria-label="закрыть"></button>
+          <!--Микс классов для задания прозрачности при hover-->
+          <button class="popup__close opacity" type="button" aria-label="закрыть"></button>
           <h2 class="popup__title">Новое место</h2>
           <fieldset class="popup__field">
-            <input type="text" class="popup__input popup__image-title" placeholder="Название">
-            <input type="text" class="popup__input popup__image-link" placeholder="Ссылка на картинку">
+            <input type="text" class="popup__input popup__image-title" required placeholder="Название">
+            <input type="url" class="popup__input popup__image-link" required placeholder="Ссылка на картинку">
           </fieldset>
           <button class="popup__button-save" type="submit">Создать</button>
         </form>
       </div>
     </div>
-    <div class="popup popup-photo">
-      <div class="popup-photo__container">
-        <figure class="popup-photo__figure">
-          <button class="popup-photo__close" type="button" aria-label="закрыть"></button>
-          <img src="#" alt="" class="popup-photo__image">
-          <figcaption class="popup-photo__caption"></figcaption>
+    <div class="popup popup_type_photo">
+      <div class="popup__container popup__container_type_photo">
+        <figure class="popup__figure">
+          <!--Микс классов для задания прозрачности при hover-->
+          <button class="popup__close opacity" type="button" aria-label="закрыть"></button>
+          <img src="#" alt="" class="popup__image">
+          <figcaption class="popup__caption"></figcaption>
         </figure>
       </div>
     </div>
-    <template class="cards-template">
+    <template id="cards-template">
       <li class="card">
         <img src="#" alt="" class="card__image">
         <div class="card__description">
@@ -87,6 +90,7 @@
       </li>
     </template>
   </div>
+  <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 
