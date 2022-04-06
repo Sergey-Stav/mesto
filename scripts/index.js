@@ -21,41 +21,44 @@ const cardList = document.querySelector('.cards');
 const cardTemplate = document.querySelector('#cards-template').content;
 
 //Создание карточек и добавление событий
-function createNewCard(place, link) {
+function createNewCard(cardData) {
   const card = cardTemplate.querySelector('.card').cloneNode(true);
   const cardImage = card.querySelector('.card__image');
-  card.querySelector('.card__title').textContent = place;
-  cardImage.src = link;
-  cardImage.alt = place;
+  card.querySelector('.card__title').textContent = cardData.name;
+  cardImage.src = cardData.link;
+  cardImage.alt = cardData.name;
   card.querySelector('.card__trash').addEventListener('click', removeCard);
   card.querySelector('.card__like').addEventListener('click', toggleLike);
   cardImage.addEventListener('click', function () {
-    openPopupPhoto(place, link);
+    openPopupPhoto(cardData);
   });
   return card;
 }
 
 //Функция добавления карточки в начало контейнера
-function renderCard(card) {
-  cardList.prepend(card)
+function renderCard(card, container) {
+  container.prepend(card);
 }
 
 //Функция отрисовки карточек из исходного массива
-initialCards.forEach(initCard => renderCard(createNewCard(initCard.name, initCard.link)));
+initialCards.forEach(function (initCard) {
+  const createdCard = createNewCard(initCard);
+  renderCard(createdCard, cardList);
+});
 
 //Функция добавления новой карточки
 function addNewCard() {
   const newCard = {};
   newCard.name = imageTitle.value;
   newCard.link = imageLink.value;
-  const card = createNewCard(newCard.name, newCard.link);
-  renderCard(card);
+  const card = createNewCard(newCard);
+  renderCard(card, cardList);
 }
 
 //Функция открытия окна просмотра фотографии
-function openPopupPhoto(place, link) {
-  photoZoom.src = link;
-  photoCaption.textContent = place;
+function openPopupPhoto(item) {
+  photoZoom.src = item.link;
+  photoCaption.textContent = item.name;
   openPopup(popupViewPhoto);
 }
 
