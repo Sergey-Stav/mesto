@@ -1,4 +1,5 @@
 //Задаём переменные
+const body = document.querySelector('.root');
 const popupEditProfile = document.querySelector('.popup_type_edit');
 const popupAddCard = document.querySelector('.popup_type_add');
 const popupViewPhoto = document.querySelector('.popup_type_photo');
@@ -19,6 +20,16 @@ const photoZoom = popupViewPhoto.querySelector('.popup__image');
 const photoCaption = popupViewPhoto.querySelector('.popup__caption')
 const cardList = document.querySelector('.cards');
 const cardTemplate = document.querySelector('#cards-template').content;
+
+//Функция удаления карточек
+function removeCard(evt) {
+  evt.currentTarget.closest('.card').remove();
+}
+
+//Функция добавления - удаления лайка
+function toggleLike(evt) {
+  evt.target.classList.toggle('card__like_active');
+}
 
 //Создание карточек и добавление событий
 function createNewCard(cardData) {
@@ -55,6 +66,35 @@ function addNewCard() {
   renderCard(card, cardList);
 }
 
+//Функция блокировки body при открытии popup
+function bodyLock() {
+  const LockPaddingValue = window.innerWidth - document.querySelector('.root').offsetWidth + 'px';
+  body.style.paddingRight = LockPaddingValue;
+  body.classList.add('root_popup-open');
+}
+
+//Функция разблокировки body при открытии popup
+function bodyUnLock() {
+  body.style.paddingRight = '0px';
+  body.classList.remove('root_popup-open');
+}
+
+//Функция открыть popup
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  bodyLock();
+  document.addEventListener('keydown', closeByEsc);
+  document.addEventListener('click', closeByOverlay);
+}
+
+//Функция закрыть popup
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  bodyUnLock();
+  document.removeEventListener('keydown', closeByEsc);
+  document.removeEventListener('click', closeByOverlay);
+}
+
 //Функция открытия окна просмотра фотографии
 function openPopupPhoto(item) {
   photoZoom.src = item.link;
@@ -72,30 +112,6 @@ function setInputValuesFromProfile() {
 function setProfileValuesFromInput() {
   profileName.textContent = popupNameField.value;
   profileJob.textContent = popupJobField.value;
-}
-
-//Функция удаления карточек
-function removeCard(evt) {
-  evt.currentTarget.closest('.card').remove();
-}
-
-//Функция добавления - удаления лайка
-function toggleLike(evt) {
-  evt.target.classList.toggle('card__like_active');
-}
-
-//Функция открыть popup
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEsc);
-  document.addEventListener('click', closeByOverlay);
-}
-
-//Функция закрыть popup
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeByEsc);
-  document.removeEventListener('click', closeByOverlay);
 }
 
 //Функция «отправки» формы редактирования профиля
@@ -128,7 +144,7 @@ const closeByEsc = (evt) => {
 
 //Обработчик для закрытия при клике на оверлей
 const closeByOverlay = (evt) => {
-  if (evt.target.classList.contains('popup__container')) {
+  if (evt.target.classList.contains('popup')) {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }

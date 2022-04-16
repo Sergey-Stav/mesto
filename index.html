@@ -43,30 +43,33 @@
     </footer>
     <div class="popup popup_type_edit">
       <div class="popup__container">
-          <!--Микс классов для задания прозрачности при hover-->
-          <button class="popup__close opacity" type="button" aria-label="закрыть"></button>
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <form class="popup__form popup__form_edit" name="edit-profile" novalidate>
-            <input id="name-input" type="text" class="popup__input popup__name" placeholder="Имя">
-            <span class="name-input-error popup__error"></span>
-            <input id="job-input" type="text" class="popup__input popup__job" placeholder="О себе">
-            <span class="job-input-error popup__error"></span>
-            <button class="popup__button" type="submit">Сохранить</button>
-          </form>
-        </div>
+        <!--Микс классов для задания прозрачности при hover-->
+        <button class="popup__close opacity" type="button" aria-label="закрыть"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form popup__form_edit" name="edit-profile" novalidate>
+          <input id="name-input" type="text" class="popup__input popup__name" minlength="2" maxlength="40" required
+            placeholder="Имя">
+          <span class="name-input-error popup__error"></span>
+          <input id="job-input" type="text" class="popup__input popup__job" minlength="2" maxlength="200" required
+            placeholder="О себе">
+          <span class="job-input-error popup__error"></span>
+          <button class="popup__button" type="submit">Сохранить</button>
+        </form>
+      </div>
     </div>
     <div class="popup popup_type_add">
       <div class="popup__container">
-          <!--Микс классов для задания прозрачности при hover-->
-          <button class="popup__close opacity" type="button" aria-label="закрыть"></button>
-          <h2 class="popup__title">Новое место</h2>
-          <form class="popup__form popup__form_add" name="add-card" novalidate>
-            <input id="image-title-input" type="text" class="popup__input popup__image-title" required placeholder="Название">
-            <span class="image-title-input-error popup__error"></span>
-            <input id="image-link-input" type="url" class="popup__input popup__image-link" required placeholder="Ссылка на картинку">
-            <span class="image-link-input-error popup__error"></span>
-            <button class="popup__button" type="submit">Создать</button>
-          </form>
+        <!--Микс классов для задания прозрачности при hover-->
+        <button class="popup__close opacity" type="button" aria-label="закрыть"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form popup__form_add" name="add-card" novalidate>
+          <input id="image-title-input" type="text" class="popup__input popup__image-title" minlength="2" maxlength="30"
+            required placeholder="Название">
+          <span class="image-title-input-error popup__error"></span>
+          <input id="image-link-input" type="url" class="popup__input popup__image-link" required
+            placeholder="Ссылка на картинку">
+          <span class="image-link-input-error popup__error"></span>
+          <button class="popup__button" type="submit">Создать</button>
         </form>
       </div>
     </div>
@@ -93,6 +96,7 @@
   </div>
   <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 
 </html>

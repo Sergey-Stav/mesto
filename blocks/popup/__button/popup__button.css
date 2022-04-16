@@ -12,6 +12,11 @@
   font-size: 18px;
   line-height: 1.22;
   cursor: pointer;
+  transition: opacity 700ms linear;
+}
+
+.popup__button:hover {
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 440px) {
