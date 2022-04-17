@@ -5,9 +5,7 @@ const popupAddCard = document.querySelector('.popup_type_add');
 const popupViewPhoto = document.querySelector('.popup_type_photo');
 const buttonOpenEditProfilePopup = document.querySelector('.profile__button-edit');
 const buttonAddCardPopup = document.querySelector('.profile__button-add-elements');
-const buttonCloseEditProfilePopup = popupEditProfile.querySelector('.popup__close');
-const buttonCloseAddCardPopup = popupAddCard.querySelector('.popup__close');
-const buttonCloseViewPhotoPopup = popupViewPhoto.querySelector('.popup__close');
+const popups = document.querySelectorAll('.popup');
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
 const formEditProfile = popupEditProfile.querySelector('.popup__form_edit');
@@ -99,6 +97,7 @@ function closePopup(popup) {
 function openPopupPhoto(item) {
   photoZoom.src = item.link;
   photoCaption.textContent = item.name;
+  photoZoom.alt = item.name;
   openPopup(popupViewPhoto);
 }
 
@@ -129,11 +128,6 @@ function submitFormAddCard(evt) {
   evt.target.reset();
 }
 
-//Обработчик закрыть окно просмотра фотографии
-buttonCloseViewPhotoPopup.addEventListener('click', function () {
-  closePopup(popupViewPhoto);
-})
-
 //Обработчик события при нажатии клавиши ESC
 const closeByEsc = (evt) => {
   if (evt.key === "Escape") {
@@ -145,8 +139,7 @@ const closeByEsc = (evt) => {
 //Обработчик для закрытия при клике на оверлей
 const closeByOverlay = (evt) => {
   if (evt.target.classList.contains('popup')) {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
+    closePopup(evt.target);
   }
 }
 
@@ -156,19 +149,18 @@ buttonOpenEditProfilePopup.addEventListener('click', function () {
   openPopup(popupEditProfile);
 });
 
-//Обработчик закрыть popup для редактирования профиля
-buttonCloseEditProfilePopup.addEventListener('click', function () {
-  closePopup(popupEditProfile);
-});
-
 //Обработчик открыть popup для добавления карточки
 buttonAddCardPopup.addEventListener('click', function () {
   openPopup(popupAddCard);
 })
 
-//Обработчик закрыть popup для добавления карточки
-buttonCloseAddCardPopup.addEventListener('click', function () {
-  closePopup(popupAddCard);
+//Обработчик закрыть popup при нажатии на Close
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+     if (evt.target.classList.contains('popup__close')) {
+       closePopup(popup);
+      }
+  })
 })
 
 // Прикрепляем обработчик редактирования профиля к форме:
