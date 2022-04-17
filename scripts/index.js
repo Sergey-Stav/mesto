@@ -134,7 +134,7 @@ const closeByEsc = (evt) => {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
-};
+}
 
 //Обработчик для закрытия при клике на оверлей
 const closeByOverlay = (evt) => {
@@ -152,16 +152,16 @@ buttonOpenEditProfilePopup.addEventListener('click', function () {
 //Обработчик открыть popup для добавления карточки
 buttonAddCardPopup.addEventListener('click', function () {
   openPopup(popupAddCard);
-})
+});
 
 //Обработчик закрыть popup при нажатии на Close
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
-     if (evt.target.classList.contains('popup__close')) {
-       closePopup(popup);
-      }
+    if (evt.target.classList.contains('popup__close')) {
+      closePopup(popup);
+    }
   })
-})
+});
 
 // Прикрепляем обработчик редактирования профиля к форме:
 formEditProfile.addEventListener('submit', submitFormEditProfile);
