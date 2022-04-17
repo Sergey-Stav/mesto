@@ -1,6 +1,7 @@
 .card__like {
   border: none;
   background-image: url(../../../images/Like.svg);
+  background-repeat: no-repeat;
   background-color: transparent;
   min-width: 22px;
   height: 19px;
