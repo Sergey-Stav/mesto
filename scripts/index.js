@@ -19,6 +19,9 @@ const photoZoom = popupViewPhoto.querySelector('.popup__image');
 const photoCaption = popupViewPhoto.querySelector('.popup__caption')
 const cardList = document.querySelector('.cards');
 const cardTemplate = document.querySelector('#cards-template').content;
+const spanList = document.querySelectorAll('.popup__error');
+const inputList = document.querySelectorAll('.popup__input');
+
 
 //Функция удаления карточек
 function removeCard(evt) {
@@ -32,6 +35,13 @@ function disabledButton() {
     element.classList.add('popup__button_disabled');
   });
 }
+
+//Функция очистки ошибки и подчеркивания инпута.
+function clearError() {
+  spanList.forEach(element => element.textContent='');
+  inputList.forEach(element => element.classList.remove('popup__input_type_error'));
+}
+
 
 //Функция добавления - удаления лайка
 function toggleLike(evt) {
@@ -134,8 +144,8 @@ function submitFormAddCard(evt) {
   evt.preventDefault();
   addNewCard();
   closePopup(popupAddCard);
-  evt.target.reset();
   disabledButton();
+  evt.target.reset();
 }
 
 //Обработчик события при нажатии клавиши ESC
@@ -157,10 +167,14 @@ const closeByOverlay = (evt) => {
 buttonOpenEditProfilePopup.addEventListener('click', function () {
   setInputValuesFromProfile();
   openPopup(popupEditProfile);
+  clearError();
 });
 
 //Обработчик открыть popup для добавления карточки
 buttonAddCardPopup.addEventListener('click', function () {
+  imageTitle.value = "";
+  imageLink.value = "";
+  clearError();
   openPopup(popupAddCard);
 });
 
