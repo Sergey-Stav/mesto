@@ -5,6 +5,7 @@ const popupAddCard = document.querySelector('.popup_type_add');
 const popupViewPhoto = document.querySelector('.popup_type_photo');
 const buttonOpenEditProfilePopup = document.querySelector('.profile__button-edit');
 const buttonAddCardPopup = document.querySelector('.profile__button-add-elements');
+const buttonList = document.querySelectorAll('.popup__button');
 const popups = document.querySelectorAll('.popup');
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
@@ -22,6 +23,14 @@ const cardTemplate = document.querySelector('#cards-template').content;
 //Функция удаления карточек
 function removeCard(evt) {
   evt.currentTarget.closest('.card').remove();
+}
+
+//Функция отключения кнопки popup
+function disabledButton() {
+  buttonList.forEach((element) => {
+    element.disabled = true;
+    element.classList.add('popup__button_disabled');
+  });
 }
 
 //Функция добавления - удаления лайка
@@ -126,6 +135,7 @@ function submitFormAddCard(evt) {
   addNewCard();
   closePopup(popupAddCard);
   evt.target.reset();
+  disabledButton();
 }
 
 //Обработчик события при нажатии клавиши ESC
