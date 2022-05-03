@@ -11,7 +11,6 @@ const popupEditProfile = document.querySelector('.popup_type_edit');
 const popupAddCard = document.querySelector('.popup_type_add');
 const buttonOpenEditProfilePopup = document.querySelector('.profile__button-edit');
 const buttonAddCardPopup = document.querySelector('.profile__button-add-elements');
-const buttonList = document.querySelectorAll('.popup__button');
 const popups = document.querySelectorAll('.popup');
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
