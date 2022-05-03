@@ -8,7 +8,7 @@
   font-weight: 500;
   font-size: 42px;
   line-height: 1.14;
-  max-width: 294px;
+  max-width: 490px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -19,5 +19,6 @@
     font-size: 27px;
     line-height: 1.22;
     margin-left: 28px;
+    max-width: 294px;
   }
 }
