@@ -2,6 +2,9 @@ export default class FormValidator {
   constructor(objForm, formElement) {
     this._objForm = objForm;
     this._form = formElement;
+    this._inputList = Array.from(formElement.querySelectorAll(this._objForm.inputSelector));
+    this._buttonElement = formElement.querySelector(this._objForm.submitButtonSelector);
+    this._spanList = formElement.querySelectorAll('.popup__error');
   }
 
   //Публичный метод валидации формы
@@ -29,21 +32,10 @@ export default class FormValidator {
   };
 
   //Приватный метод проверки наличия хотя бы одного невалидного поля
-  _hasInvalidInput(inputList) {
-    return inputList.some((inputElement) => {
+  _hasInvalidInput() {
+    return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     })
-  };
-
-  //Приватный метод переключения отображения кнопки формы
-  _toggleButtonState(inputList, buttonElement) {
-    if (this._hasInvalidInput(inputList)) {
-      buttonElement.classList.add(this._objForm.inactiveButtonClass);
-      buttonElement.disabled = true;
-    } else {
-      buttonElement.classList.remove(this._objForm.inactiveButtonClass);
-      buttonElement.disabled = false;
-    }
   };
 
   //Приватный метод проверки поля на валидность
@@ -55,15 +47,30 @@ export default class FormValidator {
     }
   };
 
+  //Публичный метод переключения отображения кнопки формы
+  toggleButtonState() {
+    if (this._hasInvalidInput()) {
+      this._buttonElement.classList.add(this._objForm.inactiveButtonClass);
+      this._buttonElement.disabled = true;
+    } else {
+      this._buttonElement.classList.remove(this._objForm.inactiveButtonClass);
+      this._buttonElement.disabled = false;
+    }
+  };
+
+  //Публичный метод очистки ошибки и подчеркивания input
+  clearError() {
+    this._spanList.forEach(element => element.textContent = '');
+    this._inputList.forEach(element => element.classList.remove('popup__input_type_error'));
+  }
+
   //Добавление обработчиков полям формы
   _setEventListeners(formElement) {
-    const inputList = Array.from(formElement.querySelectorAll(this._objForm.inputSelector));
-    const buttonElement = formElement.querySelector(this._objForm.submitButtonSelector);
-    this._toggleButtonState(inputList, buttonElement);
-    inputList.forEach((inputElement) => {
+    this.toggleButtonState();
+    this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkValid(formElement, inputElement)
-        this._toggleButtonState(inputList, buttonElement);
+        this.toggleButtonState();
       });
     });
   };

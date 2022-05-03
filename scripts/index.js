@@ -1,12 +1,14 @@
 import initialCards from "./initialCards.js";
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
+import { openPopup } from "./utils.js";
+
+export { bodyLock, closeByEsc, closeByOverlay };
 
 //Задаём переменные
 const body = document.querySelector('.root');
 const popupEditProfile = document.querySelector('.popup_type_edit');
 const popupAddCard = document.querySelector('.popup_type_add');
-export const popupViewPhoto = document.querySelector('.popup_type_photo');
 const buttonOpenEditProfilePopup = document.querySelector('.profile__button-edit');
 const buttonAddCardPopup = document.querySelector('.profile__button-add-elements');
 const buttonList = document.querySelectorAll('.popup__button');
@@ -19,11 +21,7 @@ const popupNameField = popupEditProfile.querySelector('.popup__name');
 const popupJobField = popupEditProfile.querySelector('.popup__job');
 const imageTitle = popupAddCard.querySelector('.popup__image-title');
 const imageLink = popupAddCard.querySelector('.popup__image-link');
-export const photoZoom = popupViewPhoto.querySelector('.popup__image');
-export const photoCaption = popupViewPhoto.querySelector('.popup__caption')
 const cardList = document.querySelector('.cards');
-const spanList = document.querySelectorAll('.popup__error');
-const inputList = document.querySelectorAll('.popup__input');
 
 //Объект настроек с селекторами и классами формы
 const objForm = {
@@ -42,20 +40,6 @@ formProfileValidate.enableValidation();
 //Включение валидации формы добавления карточки
 const formAddCardValidate = new FormValidator(objForm, formAddCard);
 formAddCardValidate.enableValidation();
-
-//Функция отключения кнопки popup
-function disabledButton() {
-  buttonList.forEach((element) => {
-    element.disabled = true;
-    element.classList.add('popup__button_disabled');
-  });
-}
-
-//Функция очистки ошибки и подчеркивания input
-function clearError() {
-  spanList.forEach(element => element.textContent = '');
-  inputList.forEach(element => element.classList.remove('popup__input_type_error'));
-}
 
 //Функция добавления карточки в начало контейнера
 function renderCard(card, container) {
@@ -90,20 +74,12 @@ function bodyUnLock() {
   body.classList.remove('root_popup-open');
 }
 
-//Функция открыть popup
-export function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  bodyLock();
-  document.addEventListener('keydown', closeByEsc);
-  document.addEventListener('click', closeByOverlay);
-}
-
 //Функция закрыть popup
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   bodyUnLock();
   document.removeEventListener('keydown', closeByEsc);
-  document.removeEventListener('click', closeByOverlay);
+  document.removeEventListener('mousedown', closeByOverlay);
 }
 
 //Функция присвоения значений полей input из profile
@@ -130,8 +106,6 @@ function submitFormAddCard(evt) {
   evt.preventDefault();
   addNewCard();
   closePopup(popupAddCard);
-  disabledButton();
-  evt.target.reset();
 }
 
 //Обработчик события при нажатии клавиши ESC
@@ -153,14 +127,16 @@ const closeByOverlay = (evt) => {
 buttonOpenEditProfilePopup.addEventListener('click', function () {
   setInputValuesFromProfile();
   openPopup(popupEditProfile);
-  clearError();
+  formProfileValidate.clearError();
+  formProfileValidate.toggleButtonState();
 });
 
 //Обработчик открыть popup для добавления карточки
 buttonAddCardPopup.addEventListener('click', function () {
   imageTitle.value = "";
   imageLink.value = "";
-  clearError();
+  formAddCardValidate.clearError();
+  formAddCardValidate.toggleButtonState();
   openPopup(popupAddCard);
 });
 

@@ -1,5 +1,4 @@
-import { openPopup, popupViewPhoto, photoZoom, photoCaption } from "./index.js";
-
+import { openPopup, popupViewPhoto, photoZoom, photoCaption } from "./utils.js";
 export default class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
@@ -34,8 +33,9 @@ export default class Card {
   }
 
   //Приватный метод удаления карточки
-  _removeCard(evt) {
-    evt.currentTarget.closest('.card').remove();
+  _removeCard() {
+    this._card.remove();
+    this._card = null;
   }
 
   //Приватный метод открытия карточки картинки для просмотра
