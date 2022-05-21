@@ -1,9 +1,10 @@
-import { openPopup, popupViewPhoto, photoZoom, photoCaption } from "./utils.js";
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor({ data, handleCardClick }, cardSelector) {
+    this._data = data;
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   //Получение разметки из HTML и клонирование элемента
@@ -18,12 +19,11 @@ export default class Card {
   //Публичный метод для наполнения содержимым и возврата карточки
   generateCard() {
     this._card = this._getTemplate();
-    this._setEventListeners();
     this._card.querySelector('.card__title').textContent = this._name;
     this._cardImage = this._card.querySelector('.card__image');
     this._cardImage.alt = this._name;
     this._cardImage.src = this._link;
-
+    this._setEventListeners();
     return this._card;
   }
 
@@ -38,14 +38,6 @@ export default class Card {
     this._card = null;
   }
 
-  //Приватный метод открытия карточки картинки для просмотра
-  _openPopupPhoto() {
-    photoZoom.src = this._link;
-    photoCaption.textContent = this._name;
-    photoZoom.alt = this._name;
-    openPopup(popupViewPhoto);
-  }
-
   //Добавление слушателей событий для данного класса
   _setEventListeners() {
     this._card.querySelector('.card__like').addEventListener('click', (evt) => {
@@ -55,7 +47,7 @@ export default class Card {
       this._removeCard(evt);
     });
     this._card.querySelector('.card__image').addEventListener('click', () => {
-      this._openPopupPhoto();
+      this._handleCardClick(this._name, this._link);
     });
   }
 }
