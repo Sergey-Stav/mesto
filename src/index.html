@@ -7,7 +7,6 @@
   <meta name="description" content="Mesto">
   <meta name="keywords" content="Сервис добавления и просмотра фотографий">
   <meta name="author" content="Сергей Литвиненко">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
 
@@ -15,13 +14,13 @@
   <div class="page">
     <!-- header block -->
     <header class="header">
-      <img src="./images/Logo.svg" alt="Логотип" class="logo">
+      <img src="<%=require('./images/Logo.svg')%>" alt="Логотип" class="logo">
     </header>
     <main class="content">
       <!-- profile block -->
       <section class="profile page__profile">
         <div class="profile__info">
-          <img src="./images/Avatar.jpg" alt="Аватар" class="profile__avatar">
+          <img src="<%=require('./images/Avatar.jpg')%>" alt="Аватар" class="profile__avatar">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <p class="profile__subtitle">Исследователь океана</p>
           <!--Микс классов для задания прозрачности при hover-->
@@ -94,7 +93,6 @@
       </li>
     </template>
   </div>
-  <script type="module" src="./pages/index.js"></script>
 </body>
 
 </html>
