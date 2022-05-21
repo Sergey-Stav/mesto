@@ -19,11 +19,12 @@ Web-разработчик от Яндекс.Практикум
 - Методология БЭМ (Nested)
 - JavaScript
 - Объектно-ориентированное программирование
+- Webpack
 ### Ссылка на проект
 https://sergey-stav.github.io/mesto/
 
 #### __Сергей Литвиненко__
-#### **_03/05/2022_**
+#### **_21/05/2022_**
 
 # Project: Mesto
 
@@ -46,11 +47,12 @@ The following technologies were used in creating of this website:
 -	BEM methodology (Nested)
 - JavaScript
 - Object-oriented programming
+- Webpack
 
 ### Project link
 https://sergey-stav.github.io/mesto/
 
 #### __Sergey Litvinenko__
-#### **_03/05/2022_**
+#### **_21/05/2022_**
 
 <img src="./images/Prakticum.png" width="183px">

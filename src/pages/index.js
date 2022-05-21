@@ -93,7 +93,7 @@ buttonAddCardPopup.addEventListener('click', () => {
   formAddCardValidate.clearError();
   popupFormAddCard.open();
   formAddCardValidate.toggleButtonState();
-})
+});
 
 //Добавление обработчика Submit формы редактирования профиля
 buttonOpenEditProfilePopup.addEventListener('click', () => {
