@@ -1,15 +1,15 @@
 export default class UserInfo {
   constructor({ nameSelector, jobSelector }) {
-    this._nameSelector = nameSelector;
-    this._jobSelector = jobSelector;
+    this._nameSelector = document.querySelector(nameSelector);
+    this._jobSelector = document.querySelector(jobSelector);
   }
 
   //Публичный метод возврата объекта с данными пользователя
   getUserInfo() {
     return {
       name: this._nameSelector.textContent,
-      job: this._jobSelector.textContent
-    }
+      job: this._jobSelector.textContent,
+    };
   }
 
   //Публичный метод добавления новых данных пользователя на страницу
@@ -17,5 +17,4 @@ export default class UserInfo {
     this._nameSelector.textContent = name;
     this._jobSelector.textContent = job;
   }
-
 }

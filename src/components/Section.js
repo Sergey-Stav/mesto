@@ -7,12 +7,11 @@ export default class Section {
 
   //Публичный метод для отрисовки всех элементов
   renderItems() {
-    this._renderedItems.forEach(item => this._renderer(item));
+    this._renderedItems.forEach((item) => this._renderer(item));
   }
 
   //Публичный метод для добавления элемента в контейнер
   addItem(element) {
     this._container.prepend(element);
   }
-
 }
