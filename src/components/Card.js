@@ -1,9 +1,9 @@
 export default class Card {
-  constructor({ data, handleCardClick, handleDeleteClick, setLike, deleteLike }, cardSelector, settings) {
+  constructor(data, cardSelector, settings, ownerId, { handleCardClick, handleDeleteClick, setLike, deleteLike }) {
     this._data = data;
     this._likes = data.likes;
     this._settings = settings;
-    this._ownerId = data.ownerId;
+    this._ownerId = ownerId;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
@@ -96,9 +96,9 @@ export default class Card {
     this._cardLikeCount = this._card.querySelector(this._settings.cardLikeCountSelector);
     this._cardDeleteButton = this._card.querySelector(this._settings.cardDeleteButtonSelector);
     this._card.setAttribute('id', `a${this._data._id}`);//!a?
-    // this.setLikeCount(this._data);
+    this.setLikeCount(this._data);
     this._setEventListeners();
-    // this._checkIsOwnCard();
+    this._checkIsOwnCard();
     return this._card;
   }
 

@@ -13,7 +13,7 @@ export default class UserInfo {
     };
   }
 
-  
+
   setUserAvatar(data) {
     this._avatarSelector.src = data.avatar;
   }
@@ -21,9 +21,9 @@ export default class UserInfo {
 
 
   //Публичный метод добавления новых данных пользователя на страницу
-  setUserInfo({ name, job }) {
+  setUserInfo({ name, about }) {
     this._nameSelector.textContent = name;
-    this._jobSelector.textContent = job;
+    this._jobSelector.textContent = about;
     this._setUserAvatar(data);
     this._avatarSelector.alt = `${data.name} аватар`;
   }

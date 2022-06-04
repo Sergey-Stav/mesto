@@ -23,6 +23,29 @@ import {
 } from "../utils/constants.js";
 import PopupWithConfirm from "../components/PopupWithConfirm";
 
+let tempCard = null;
+let ownerId = null;
+
+//Создание экземпляра класса UserInfo, отвечающего за отображение информации о пользователе
+const userInfo = new UserInfo(userSelectorObject);
+
+//Создание экземпляра класса Section для отрисовки элементов на странице
+const defaultCardList = new Section(
+  {
+    // items: initialCards,
+    renderer: (data) => {
+      const newCard = createNewCard(data);
+      const cardElement = newCard.generateCard();
+      newCard.setLikeCount(data);
+      defaultCardList.addItem(cardElement);
+    },
+  },
+  cardList
+);
+
+//Отрисовка карточек на странице
+// defaultCardList.renderItems();
+
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-42',
   headers: {
@@ -32,9 +55,20 @@ const api = new Api({
 });
 
 
+api.getInitialData()
+  .then((data) => {
+    const [userData, cardsData] = data;
+    ownerId = userData._id;
+    userInfo.setUserInfo(userData);
+    defaultCardList.renderItems(cardsData);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
 
-const popupDeleteConfirm = new PopupWithConfirm(popupConfirmDelete);
-popupDeleteConfirm.setEventListeners();
+
+const popupWithConfirm = new PopupWithConfirm(popupConfirmDelete);
+popupWithConfirm.setEventListeners();
 
 
 //Создание экземпляра класса PopupWithImage для просмотра картинки
@@ -43,33 +77,36 @@ popupWithImage.setEventListeners();
 
 //Функция создания новой карточки
 const createNewCard = (data) => {
-  const card = new Card(
-    {
-      data,
-      handleCardClick: (name, link) => {
-        popupWithImage.open(name, link);
-      },
+  const card = new Card(data, "#cards-template", cardSettings, ownerId, {
+    handleCardClick: (data) => {
+      photoPopup.open(data);
     },
-    "#cards-template", cardSettings
-  );
-  const cardElement = card.generateCard();
-  return cardElement;
-};
-
-//Создание экземпляра класса Section для отрисовки элементов на странице
-const defaultCardList = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const newCard = createNewCard(item);
-      defaultCardList.addItem(newCard);
+    handleDeleteCardClick: () => {
+      tempCard = card;
+      popupWithConfirm.open(data);
     },
-  },
-  cardList
-);
+    setLike: (data) => {
+      api.setLike(data)
+        .then((data) => {
+          card.setLikeCount(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    },
+    deleteLike: (data) => {
+      api.deleteLike(data)
+        .then((data) => {
+          card.setLikeCount(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    },
+  });
+  return card;
+}
 
-//Отрисовка карточек на странице
-defaultCardList.renderItems();
 
 //Создание экземпляра класса PopupWithForm для добавления карточки
 const popupFormAddCard = new PopupWithForm(popupAddCard, {
@@ -83,8 +120,6 @@ const popupFormAddCard = new PopupWithForm(popupAddCard, {
 //Добавление слушателя форме добавления карточки
 popupFormAddCard.setEventListeners();
 
-//Создание экземпляра класса UserInfo, отвечающего за отображение информации о пользователе
-const userInfo = new UserInfo(userSelectorObject);
 
 //Создание экземпляра класса PopupWithForm для редактирования профиля
 const popupFormEditProfile = new PopupWithForm(popupEditProfile, {
