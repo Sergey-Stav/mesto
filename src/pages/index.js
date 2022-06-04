@@ -5,6 +5,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
+import Api from "../components/Api.js";
 import {
   popupEditProfile,
   popupAddCard,
@@ -12,12 +13,29 @@ import {
   buttonAddCardPopup,
   formEditProfile,
   formAddCard,
+  popupConfirmDelete,
   popupViewPhoto,
   cardList,
   objForm,
   initialCards,
   userSelectorObject,
+  cardSettings
 } from "../utils/constants.js";
+import PopupWithConfirm from "../components/PopupWithConfirm";
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-42',
+  headers: {
+    authorization: '74040f11-910e-4c55-acf1-dcb990a8b9e9',
+    'Content-Type': 'application/json'
+  }
+});
+
+
+
+const popupDeleteConfirm = new PopupWithConfirm(popupConfirmDelete);
+popupDeleteConfirm.setEventListeners();
+
 
 //Создание экземпляра класса PopupWithImage для просмотра картинки
 const popupWithImage = new PopupWithImage(popupViewPhoto);
@@ -32,7 +50,7 @@ const createNewCard = (data) => {
         popupWithImage.open(name, link);
       },
     },
-    "#cards-template"
+    "#cards-template", cardSettings
   );
   const cardElement = card.generateCard();
   return cardElement;

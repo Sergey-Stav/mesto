@@ -10,15 +10,27 @@ const buttonAddCardPopup = document.querySelector(
 );
 const formEditProfile = document.querySelector(".popup__form_edit");
 const formAddCard = document.querySelector(".popup__form_add");
+const popupConfirmDelete ='.popup_type_confirm';
 const popupViewPhoto = ".popup_type_photo";
 const popupNameField = document.querySelector(".popup__name");
 const popupJobField = document.querySelector(".popup__job");
 const cardList = ".cards";
 
+const cardSettings = {
+  cardImageSelector: ".card__image",
+  cardTitleSelector: ".card__title",
+  cardLikeSelector: ".card__like-button",
+  cardTitleSelector: ".card__title",
+  cardLikeCountSelector: ".card__like-counter",
+  cardDeleteButtonSelector: ".card__trash",
+  cardLikeActiveClass: "card__like-button_active"
+}
+
 //Объект с селекторами информации о пользователе
 const userSelectorObject = {
   nameSelector: ".profile__title",
   jobSelector: ".profile__subtitle",
+  avatarSelector: ".profile__avatar"
 };
 
 //Объект настроек с селекторами и классами формы
@@ -67,6 +79,7 @@ export {
   buttonAddCardPopup,
   formEditProfile,
   formAddCard,
+  popupConfirmDelete,
   popupViewPhoto,
   popupNameField,
   popupJobField,
@@ -74,4 +87,5 @@ export {
   objForm,
   initialCards,
   userSelectorObject,
+  cardSettings
 };

@@ -1,4 +1,4 @@
-.card__like_active {
+.card__like-button_active {
   background-image: url(../../../../images/Like_active.svg);
   background-color: transparent;
   background-repeat: no-repeat;
@@ -6,5 +6,4 @@
   width: 22px;
   height: 19px;
   align-self: center;
-  margin-right: 5px;
 }
