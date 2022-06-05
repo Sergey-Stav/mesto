@@ -8,10 +8,10 @@ export default class PopupWithImage extends Popup {
   }
 
   //Публичный метод открытия popup с картинкой
-  open(name, link) {
-    this._popupImage.src = link;
-    this._popupImage.alt = name;
-    this._popupTitle.textContent = name;
+  open(data) {
+    this._popupImage.src = data.link;
+    this._popupImage.alt = `Фотография ${data.name}`;
+    this._popupTitle.textContent = data.name;
     super.open();
   }
 }

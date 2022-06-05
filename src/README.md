@@ -20,11 +20,12 @@ Web-разработчик от Яндекс.Практикум
 - JavaScript
 - Объектно-ориентированное программирование
 - Webpack
+- API
 ### Ссылка на проект
 https://sergey-stav.github.io/mesto/
 
 #### __Сергей Литвиненко__
-#### **_21/05/2022_**
+#### **_05/06/2022_**
 
 # Project: Mesto
 
@@ -48,11 +49,12 @@ The following technologies were used in creating of this website:
 - JavaScript
 - Object-oriented programming
 - Webpack
+- API
 
 ### Project link
 https://sergey-stav.github.io/mesto/
 
 #### __Sergey Litvinenko__
-#### **_21/05/2022_**
+#### **_05/06/2022_**
 
 <img src="./images/Prakticum.png" width="183px">

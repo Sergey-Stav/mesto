@@ -10,12 +10,18 @@ const buttonAddCardPopup = document.querySelector(
 );
 const formEditProfile = document.querySelector(".popup__form_edit");
 const formAddCard = document.querySelector(".popup__form_add");
-const popupConfirmDelete ='.popup_type_confirm';
+const formUpdateAvatar = document.querySelector(".popup__update-avatar");
+const popupConfirmDelete = ".popup_type_confirm";
 const popupViewPhoto = ".popup_type_photo";
 const popupNameField = document.querySelector(".popup__name");
 const popupJobField = document.querySelector(".popup__job");
+const popupAvatarUpdate = ".popup_type_update-avatar";
+const updateAvatarButtonElement = document.querySelector(
+  ".profile__avatar-button-edit"
+);
 const cardList = ".cards";
 
+//Объект с селекторами классов элементов карточки
 const cardSettings = {
   cardImageSelector: ".card__image",
   cardTitleSelector: ".card__title",
@@ -23,14 +29,14 @@ const cardSettings = {
   cardTitleSelector: ".card__title",
   cardLikeCountSelector: ".card__like-counter",
   cardDeleteButtonSelector: ".card__trash",
-  cardLikeActiveClass: "card__like-button_active"
-}
+  cardLikeActiveClass: "card__like-button_active",
+};
 
 //Объект с селекторами информации о пользователе
 const userSelectorObject = {
   nameSelector: ".profile__title",
   jobSelector: ".profile__subtitle",
-  avatarSelector: ".profile__avatar"
+  avatarSelector: ".profile__avatar",
 };
 
 //Объект настроек с селекторами и классами формы
@@ -43,34 +49,6 @@ const objForm = {
   errorClass: "popup__error_visible",
 };
 
-//Массив карточек для первоначальной отрисовки
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 export {
   body,
   popupEditProfile,
@@ -79,13 +57,15 @@ export {
   buttonAddCardPopup,
   formEditProfile,
   formAddCard,
+  formUpdateAvatar,
   popupConfirmDelete,
   popupViewPhoto,
   popupNameField,
   popupJobField,
   cardList,
   objForm,
-  initialCards,
   userSelectorObject,
-  cardSettings
+  cardSettings,
+  updateAvatarButtonElement,
+  popupAvatarUpdate,
 };

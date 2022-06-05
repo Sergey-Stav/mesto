@@ -41,6 +41,10 @@ export default class Popup {
     }
   }
 
+  //Метод получения элемента текущего попапа
+  getPopupElement() {
+    return this._popup;
+  }
   //Добавление слушателей для закрытия popup при клике по Close и Overlay
   setEventListeners() {
     this._popup.addEventListener("mousedown", (evt) => {

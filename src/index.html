@@ -24,14 +24,14 @@
         <section class="profile page__profile">
           <div class="profile__info">
             <div class="profile__container-avatar">
-              <img
-                src="<%=require('./images/Avatar.jpg')%>"
-                alt="Аватар"
-                class="profile__avatar"
-              />
+              <img src="#" alt="Аватар" class="profile__avatar" />
+              <button
+                class="profile__avatar-button-edit"
+                aria-label="открыть форму обновления аватара профиля"
+              ></button>
             </div>
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <p class="profile__subtitle">Исследователь океана</p>
+            <h1 class="profile__title"></h1>
+            <p class="profile__subtitle"></p>
             <!--Микс классов для задания прозрачности при hover-->
             <button
               class="profile__button-edit opacity"
@@ -80,7 +80,7 @@
             <span class="name-input-error popup__error"></span>
             <input
               id="job-input"
-              name="job"
+              name="about"
               type="text"
               class="popup__input popup__job"
               minlength="2"
@@ -175,7 +175,7 @@
           >
             <input
               id="avatar-link-input"
-              name="avatar-link"
+              name="avatar_link"
               type="url"
               class="popup__input"
               required
@@ -195,7 +195,6 @@
               <button class="card__like-button"></button>
               <span class="card__like-counter">0</span>
             </div>
-
           </div>
           <button class="card__trash"></button>
         </li>
