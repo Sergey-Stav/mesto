@@ -13,16 +13,11 @@ export default class UserInfo {
     };
   }
 
-  //Публичный метод установки аватара на странице
-  setUserAvatar(data) {
-    this._avatarSelector.src = data.avatar;
-  }
-
   //Публичный метод добавления новых данных пользователя на страницу
   setUserInfo(data) {
     this._nameSelector.textContent = data.name;
     this._jobSelector.textContent = data.about;
-    this.setUserAvatar(data);
+    this._avatarSelector.src = data.avatar;
     this._avatarSelector.alt = `${data.name} аватар`;
   }
 }

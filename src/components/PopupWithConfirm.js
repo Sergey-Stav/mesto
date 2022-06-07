@@ -6,9 +6,17 @@ export default class PopupWithConfirm extends Popup {
     this._form = this._popup.querySelector(".popup__form");
   }
 
-  //Добавление функции обработки сабмита
+  //Добавление функции обработки submit
   setSubmitHandler({ submitHandler }) {
     this._submitHandler = submitHandler;
+  }
+
+  //Приватный метод подтверждения удаления карточки по нажатию Enter
+  _handleKeyDownClose(evt) {
+    super._handleKeyDownClose(evt);
+    if (evt.key === "Enter") {
+      this._submitHandler();
+    }
   }
 
   //Добавления слушателей данному классу

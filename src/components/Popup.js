@@ -3,21 +3,26 @@ import { body } from "../utils/constants.js";
 export default class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
-    this._handleEscClose = this._handleEscClose.bind(this);
+    this._handleKeyDownClose = this._handleKeyDownClose.bind(this);
   }
 
   //Публичный метод открытия popup
   open() {
     this._popup.classList.add("popup_opened");
     this._lockBody();
-    document.addEventListener("keydown", this._handleEscClose);
+    document.addEventListener("keydown", this._handleKeyDownClose);
   }
 
   //Публичный метод закрытия popup
   close() {
     this._popup.classList.remove("popup_opened");
     this._unlockBody();
-    document.removeEventListener("keydown", this._handleEscClose);
+    document.removeEventListener("keydown", this._handleKeyDownClose);
+  }
+
+  //Публичный метод установки текста кнопки popup
+  setButtonName(btnName) {
+    this._popup.querySelector(".popup__button").textContent = btnName;
   }
 
   //Функция блокировки body при открытии popup
@@ -34,17 +39,13 @@ export default class Popup {
     body.classList.remove("root_popup-open");
   }
 
-  //Приватный метод закрытия popup по ESC
-  _handleEscClose(evt) {
+  //Приватный метод для обработки нажатия клавиш
+  _handleKeyDownClose(evt) {
     if (evt.key === "Escape") {
       this.close();
     }
   }
 
-  //Метод получения элемента текущего попапа
-  getPopupElement() {
-    return this._popup;
-  }
   //Добавление слушателей для закрытия popup при клике по Close и Overlay
   setEventListeners() {
     this._popup.addEventListener("mousedown", (evt) => {

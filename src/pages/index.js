@@ -25,21 +25,19 @@ import {
 } from "../utils/constants.js";
 import PopupWithConfirm from "../components/PopupWithConfirm";
 
-let ownerId = null;
+let userId = null;
 
 //Функция уведомления пользователя о процессе сохранения (удаления) данных
 const renderLoading = ({
   isLoading,
-  popupElement,
+  popup,
   originalTextOnButtonPopup = "Сохранить",
   loadingTextOnButtonPopup = "Сохранение...",
 }) => {
   if (isLoading) {
-    popupElement.querySelector(".popup__button").textContent =
-      loadingTextOnButtonPopup;
+    popup.setButtonName(loadingTextOnButtonPopup);
   } else {
-    popupElement.querySelector(".popup__button").textContent =
-      originalTextOnButtonPopup;
+    popup.setButtonName(originalTextOnButtonPopup);
   }
 };
 
@@ -52,7 +50,7 @@ const defaultCardList = new Section(
     renderer: (data) => {
       const newCard = createNewCard(data);
       const cardElement = newCard.generateCard();
-      newCard.setLikeCount(data);
+      newCard.updateLikesView(data);
       defaultCardList.addItem(cardElement);
     },
   },
@@ -73,7 +71,7 @@ api
   .getInitialData()
   .then((data) => {
     const [userData, cardsData] = data;
-    ownerId = userData._id;
+    userId = userData._id;
     userInfo.setUserInfo(userData);
     defaultCardList.renderItems(cardsData);
   })
@@ -91,7 +89,7 @@ popupWithImage.setEventListeners();
 
 //Функция создания новой карточки
 const createNewCard = (data) => {
-  const card = new Card(data, "#cards-template", cardSettings, ownerId, {
+  const card = new Card(data, "#cards-template", cardSettings, userId, {
     handleCardClick: (data) => {
       popupWithImage.open(data);
     },
@@ -101,7 +99,7 @@ const createNewCard = (data) => {
         submitHandler: () => {
           renderLoading({
             isLoading: true,
-            popupElement: popupWithConfirm.getPopupElement(),
+            popup: popupWithConfirm,
             loadingTextOnButtonPopup: "Удаление...",
           });
           api
@@ -116,7 +114,7 @@ const createNewCard = (data) => {
             .finally(() => {
               renderLoading({
                 isLoading: false,
-                popupElement: popupWithConfirm.getPopupElement(),
+                popup: popupWithConfirm,
                 originalTextOnButtonPopup: "Да",
               });
             });
@@ -127,7 +125,7 @@ const createNewCard = (data) => {
       api
         .setLike(data)
         .then((data) => {
-          card.setLikeCount(data);
+          card.updateLikesView(data);
         })
         .catch((err) => {
           console.log(err);
@@ -137,7 +135,7 @@ const createNewCard = (data) => {
       api
         .deleteLike(data)
         .then((data) => {
-          card.setLikeCount(data);
+          card.updateLikesView(data);
         })
         .catch((err) => {
           console.log(err);
@@ -152,7 +150,7 @@ const popupFormAddCard = new PopupWithForm(popupAddCard, {
   callbackSubmit: (data) => {
     renderLoading({
       isLoading: true,
-      popupElement: popupFormAddCard.getPopupElement(),
+      popup: popupFormAddCard,
     });
     api
       .addCard(data)
@@ -167,7 +165,8 @@ const popupFormAddCard = new PopupWithForm(popupAddCard, {
       .finally(() => {
         renderLoading({
           isLoading: false,
-          popupElement: popupFormAddCard.getPopupElement(),
+          popup: popupFormAddCard,
+          originalTextOnButtonPopup: "Создать",
         });
         popupFormAddCard.close();
       });
@@ -179,13 +178,13 @@ popupFormAddCard.setEventListeners();
 
 //Создание экземпляра класса PopupWithForm для редактирования профиля
 const popupFormEditProfile = new PopupWithForm(popupEditProfile, {
-  callbackSubmit: () => {
+  callbackSubmit: (data) => {
     renderLoading({
       isLoading: true,
-      popupElement: popupFormEditProfile.getPopupElement(),
+      popup: popupFormEditProfile,
     });
     api
-      .setUserInfo(popupFormEditProfile.dataFromInputs)
+      .setUserInfo(data)
       .then((res) => {
         userInfo.setUserInfo(res);
       })
@@ -195,7 +194,7 @@ const popupFormEditProfile = new PopupWithForm(popupEditProfile, {
       .finally(() => {
         renderLoading({
           isLoading: false,
-          popupElement: popupFormEditProfile.getPopupElement(),
+          popup: popupFormEditProfile,
         });
         popupFormEditProfile.close();
       });
@@ -210,12 +209,12 @@ const popupUpdateAvatar = new PopupWithForm(popupAvatarUpdate, {
   callbackSubmit: (data) => {
     renderLoading({
       isLoading: true,
-      popupElement: popupUpdateAvatar.getPopupElement(),
+      popup: popupUpdateAvatar,
     });
     api
-      .setUserAvatar(popupUpdateAvatar.dataFromInputs.avatar_link)
+      .setUserAvatar(data.avatar_link)
       .then((res) => {
-        userInfo.setUserAvatar(res);
+        userInfo.setUserInfo(res);
       })
       .catch((err) => {
         console.log(err);
@@ -223,7 +222,7 @@ const popupUpdateAvatar = new PopupWithForm(popupAvatarUpdate, {
       .finally(() => {
         renderLoading({
           isLoading: false,
-          popupElement: popupUpdateAvatar.getPopupElement(),
+          popup: popupUpdateAvatar,
         });
         popupUpdateAvatar.close();
       });
