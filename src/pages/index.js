@@ -27,20 +27,6 @@ import PopupWithConfirm from "../components/PopupWithConfirm";
 
 let userId = null;
 
-//Функция уведомления пользователя о процессе сохранения (удаления) данных
-const renderLoading = ({
-  isLoading,
-  popup,
-  originalTextOnButtonPopup = "Сохранить",
-  loadingTextOnButtonPopup = "Сохранение...",
-}) => {
-  if (isLoading) {
-    popup.setButtonName(loadingTextOnButtonPopup);
-  } else {
-    popup.setButtonName(originalTextOnButtonPopup);
-  }
-};
-
 //Создание экземпляра класса UserInfo, отвечающего за отображение информации о пользователе
 const userInfo = new UserInfo(userSelectorObject);
 
@@ -97,10 +83,8 @@ const createNewCard = (data) => {
       popupWithConfirm.open();
       popupWithConfirm.setSubmitHandler({
         submitHandler: () => {
-          renderLoading({
+          popupWithConfirm.renderLoading({
             isLoading: true,
-            popup: popupWithConfirm,
-            loadingTextOnButtonPopup: "Удаление...",
           });
           api
             .deleteCard(data)
@@ -112,10 +96,8 @@ const createNewCard = (data) => {
               console.log(err);
             })
             .finally(() => {
-              renderLoading({
+              popupWithConfirm.renderLoading({
                 isLoading: false,
-                popup: popupWithConfirm,
-                originalTextOnButtonPopup: "Да",
               });
             });
         },
@@ -148,9 +130,8 @@ const createNewCard = (data) => {
 //Создание экземпляра класса PopupWithForm для добавления карточки
 const popupFormAddCard = new PopupWithForm(popupAddCard, {
   callbackSubmit: (data) => {
-    renderLoading({
+    popupFormAddCard.renderLoading({
       isLoading: true,
-      popup: popupFormAddCard,
     });
     api
       .addCard(data)
@@ -163,10 +144,9 @@ const popupFormAddCard = new PopupWithForm(popupAddCard, {
         console.log(err);
       })
       .finally(() => {
-        renderLoading({
+        popupFormAddCard.renderLoading({
           isLoading: false,
-          popup: popupFormAddCard,
-          originalTextOnButtonPopup: "Создать",
+          originalTextOnButton: "Создать",
         });
         popupFormAddCard.close();
       });
@@ -179,9 +159,8 @@ popupFormAddCard.setEventListeners();
 //Создание экземпляра класса PopupWithForm для редактирования профиля
 const popupFormEditProfile = new PopupWithForm(popupEditProfile, {
   callbackSubmit: (data) => {
-    renderLoading({
+    popupFormEditProfile.renderLoading({
       isLoading: true,
-      popup: popupFormEditProfile,
     });
     api
       .setUserInfo(data)
@@ -192,9 +171,8 @@ const popupFormEditProfile = new PopupWithForm(popupEditProfile, {
         console.log(err);
       })
       .finally(() => {
-        renderLoading({
+        popupFormEditProfile.renderLoading({
           isLoading: false,
-          popup: popupFormEditProfile,
         });
         popupFormEditProfile.close();
       });
@@ -207,9 +185,8 @@ popupFormEditProfile.setEventListeners();
 //Создание экземпляра класса PopupWithForm для редактирования аватара пользователя
 const popupUpdateAvatar = new PopupWithForm(popupAvatarUpdate, {
   callbackSubmit: (data) => {
-    renderLoading({
+    popupUpdateAvatar.renderLoading({
       isLoading: true,
-      popup: popupUpdateAvatar,
     });
     api
       .setUserAvatar(data.avatar_link)
@@ -220,9 +197,8 @@ const popupUpdateAvatar = new PopupWithForm(popupAvatarUpdate, {
         console.log(err);
       })
       .finally(() => {
-        renderLoading({
+        popupUpdateAvatar.renderLoading({
           isLoading: false,
-          popup: popupUpdateAvatar,
         });
         popupUpdateAvatar.close();
       });

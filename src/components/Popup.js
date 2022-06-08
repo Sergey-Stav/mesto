@@ -20,11 +20,6 @@ export default class Popup {
     document.removeEventListener("keydown", this._handleKeyDownClose);
   }
 
-  //Публичный метод установки текста кнопки popup
-  setButtonName(btnName) {
-    this._popup.querySelector(".popup__button").textContent = btnName;
-  }
-
   //Функция блокировки body при открытии popup
   _lockBody() {
     const lockPaddingValue =

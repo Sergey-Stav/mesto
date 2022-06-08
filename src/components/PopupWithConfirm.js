@@ -4,7 +4,17 @@ export default class PopupWithConfirm extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
     this._form = this._popup.querySelector(".popup__form");
+    this._popupBtn = this._popup.querySelector(".popup__button");
   }
+
+  //Метод уведомления пользователя о процессе удаления данных
+  renderLoading = ({ isLoading }) => {
+    if (isLoading) {
+      this._popupBtn.textContent = "Удаление...";
+    } else {
+      this._popupBtn.textContent = "Да";
+    }
+  };
 
   //Добавление функции обработки submit
   setSubmitHandler({ submitHandler }) {
